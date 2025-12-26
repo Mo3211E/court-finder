@@ -1,23 +1,24 @@
 import { useCallback } from "react";
-import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/landing/Header";
 import { Hero } from "@/components/landing/Hero";
 import { Features } from "@/components/landing/Features";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { CallToAction } from "@/components/landing/CallToAction";
 import { Footer } from "@/components/landing/Footer";
+import { FixedMapButton } from "@/components/FixedMapButton";
 
 const Index = () => {
+  const navigate = useNavigate();
+
   const handleFindGames = useCallback(() => {
-    // This will be connected to location/map functionality later
-    toast.info("Finding games near you...", {
-      description: "Location features coming soon!",
-    });
-  }, []);
+    navigate('/map');
+  }, [navigate]);
 
   return (
     <main className="min-h-screen">
       <Header />
+      <FixedMapButton />
       <Hero onFindGames={handleFindGames} />
       <Features />
       <HowItWorks />
