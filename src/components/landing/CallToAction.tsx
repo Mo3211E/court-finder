@@ -4,9 +4,10 @@ import { BasketballIcon } from "@/components/icons/BasketballIcon";
 
 interface CallToActionProps {
   onFindGames: () => void;
+  onReportGame: () => void;
 }
 
-export const CallToAction = ({ onFindGames }: CallToActionProps) => {
+export const CallToAction = ({ onFindGames, onReportGame }: CallToActionProps) => {
   return (
     <section className="py-24 px-4 bg-hero relative overflow-hidden">
       {/* Background decoration */}
@@ -43,6 +44,7 @@ export const CallToAction = ({ onFindGames }: CallToActionProps) => {
             <Button 
               variant="outline"
               size="lg"
+              onClick={onReportGame}
               className="px-8 py-6 text-lg font-bold border-primary/30 text-primary-foreground hover:bg-primary/10 transition-smooth"
             >
               Report a Game
