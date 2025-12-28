@@ -7,9 +7,10 @@ import { CourtDetailModal } from '@/components/map/CourtDetailModal';
 import { GamesHotbar } from '@/components/map/GamesHotbar';
 import { RadiusSelector } from '@/components/map/RadiusSelector';
 import { MapLegend } from '@/components/map/MapLegend';
+import { ReportGameModal } from '@/components/report/ReportGameModal';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Key } from 'lucide-react';
+import { ArrowLeft, Key, Plus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const MapPage = () => {
@@ -34,6 +35,7 @@ const MapPage = () => {
   });
   const [visibleCourts, setVisibleCourts] = useState<BasketballCourt[]>([]);
   const [courtsWithGames, setCourtsWithGames] = useState<BasketballCourt[]>([]);
+  const [isReportModalOpen, setIsReportModalOpen] = useState(false);
 
   // Get courts based on filters
   useEffect(() => {
@@ -245,6 +247,15 @@ const MapPage = () => {
         Back
       </Button>
 
+      {/* Report Game button */}
+      <Button
+        onClick={() => setIsReportModalOpen(true)}
+        className="fixed top-4 left-28 z-50 bg-basketball-primary hover:bg-basketball-primary/90"
+      >
+        <Plus className="w-4 h-4 mr-2" />
+        Report Game
+      </Button>
+
       {/* Radius selector */}
       <RadiusSelector
         radius={filters.radius}
@@ -270,6 +281,12 @@ const MapPage = () => {
           onClose={() => setSelectedCourt(null)}
         />
       )}
+
+      {/* Report Game Modal */}
+      <ReportGameModal 
+        isOpen={isReportModalOpen} 
+        onClose={() => setIsReportModalOpen(false)} 
+      />
     </div>
   );
 };
